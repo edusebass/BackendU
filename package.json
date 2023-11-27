@@ -1,0 +1,23 @@
+{
+  "name": "backendu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edusebass/BackendU.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edusebass/BackendU/issues"
+  },
+  "homepage": "https://github.com/edusebass/BackendU#readme",
+  "dependencies": {
+    "mongoose": "^8.0.1"
+  }
+}
