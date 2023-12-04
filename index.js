@@ -1,15 +1,18 @@
-const http = require("http");
+// Creacion de un web server con Express
 
-const server = http.createServer((req,res)=>{
-    user = {
-        user:"Byron",
-        email:"byron@hotmail.com"
-    }
-    res.setHeader('Content-Type', 'application/json');
-    res.write(JSON.stringify(user));
-    res.end()
+// Invocar la libreria de expresss
+const express = require('express')
+
+// Crear una instancia
+const app = express()
+
+// Se ejecutara en el 
+app.listen(3000)
+console.log("Web server ejecutandose en el puerto 3000")
+
+app.get('/', (req, res) => {
+    res.send("Bienvenidos")
 })
-
-server.listen(3000)
-
-console.log("Servidor ejecutandose en el puerto 3000");
+app.get('/cositas', (req, res) => {
+    res.send("cositas")
+})
