@@ -16,3 +16,8 @@ app.get('/', (req, res) => {
 app.get('/cositas', (req, res) => {
     res.send("cositas")
 })
+
+app.use((req, res) => {
+    res.send("404 - NOT FOUND")
+})
+
