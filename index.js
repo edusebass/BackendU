@@ -1,12 +1,12 @@
 // Creacion de un web server con Express
 
 // Invocar la libreria de expresss
-const express = require('express')
+// const express = require('express')
 
-// Crear una instancia
-const app = express()
+// // Crear una instancia
+// const app = express()
 
-// RUTAS
+// // RUTAS
 // rutas app
 // app.get('/', (req, res) => {
 //     res.send("Bienvenidos")
@@ -37,43 +37,52 @@ const app = express()
 // })
 
 
+//ENVIO DE ARCHIVOS
+// app.get('/hamburguesa/simple', (req, res) => {
+//     res.send("Hamburguesa simple")
+// })
 
-app.get('/hamburguesa/simple', (req, res) => {
-    res.send("Hamburguesa simple")
+// //enviar imagenes
+// console.log(__dirname)
+// app.get('/hamburguesa/doble', (req, res) => {
+//     res.sendFile('./src/public/doble.jpg', {
+//         root:__dirname
+//     })
+// })
+
+// //enviar word
+// app.get('/hamburguesa/triple', (req, res) => {
+//     res.sendFile('./src/public/triple.docx', {
+//         root:__dirname
+//     })
+// })
+
+// //json
+// app.get('/hamburguesa/mixta', (req, res) => {
+//     res.status(200).json({
+//         "tipo": "Mixta",
+//         "extra": "no"
+//     })
+// })
+
+
+
+//PLANTILLAS HANDLEBARS
+const express = require('express')
+const {engine} = require('express-handlebars')
+
+const app = express()
+
+
+//utilizar el motor de plantillas
+app.engine('handlebars', engine())
+//ubicacion del directorio view
+app.set('view engine', 'handlebars')
+app.set('views', './src/views')
+
+app.get('/hamburguesa/vegana', (req, res) => {
+    res.render('home')
 })
-
-//enviar imagenes
-console.log(__dirname)
-app.get('/hamburguesa/doble', (req, res) => {
-    res.sendFile('./doble.jpg', {
-        root:__dirname
-    })
-})
-
-//enviar word
-app.get('/hamburguesa/triple', (req, res) => {
-    res.sendFile('./triple.docx', {
-        root:__dirname
-    })
-})
-
-//json
-app.get('/hamburguesa/mixta', (req, res) => {
-    res.status(200).json({
-        "tipo": "Mixta",
-        "extra": "no"
-    })
-})
-
-
-
-
-
-
-
-
-
-
 
 
 
