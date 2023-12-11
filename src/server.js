@@ -7,10 +7,11 @@ const app = express();
 
 // Configuraciones 
 app.set('port', process.env.port || 1000);
-app.set('views', path.join(__dirname, 'views'));
 
 // Middlewares 
 app.use(express.urlencoded({ extended: false }));
+// Rutas 
+app.use(require('./routers/index.routes'))
 
 // Variables globales
 
