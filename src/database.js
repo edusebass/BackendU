@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 //const MONGODB_URI = 'mongodb+srv://byrontosh:sistemas@cluster0.6e8zntc.mongodb.net/test'
-//const MONGODB_URI = 'mongodb://localhost:27017/portfolio'
+const MONGODB_URI = 'mongodb://localhost:27017/portfolio'
 connection = async()=>{
     try {
          await mongoose.connect(MONGODB_URI)
