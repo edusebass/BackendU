@@ -1,7 +1,8 @@
 const Portfolio = require('../models/Portfolio')
 
-const renderAllPortafolios = (req,res)=>{
-    res.send('Listar todos los portafolios')
+const renderAllPortafolios = async(req,res)=>{
+    const portfolios = await Portfolio.find().lean()
+    res.render("portafolio/allPortfolios",{portfolios})
 }
 
 const renderPortafolio = (req,res)=>{
@@ -26,9 +27,8 @@ const createNewPortafolio =async (req,res)=>{
     const {title, category,description} = req.body
     const newPortfolio = new Portfolio({title,category,description})
     await newPortfolio.save()
-    res.json({newPortfolio})
+    res.redirect('/portafolios')
 }
-
 
 module.exports ={
     renderAllPortafolios,
