@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path');
 const { engine }  = require('express-handlebars')
+const methodOverride = require('method-override');
 
 // Inicializaciones
 const app = express()
@@ -11,7 +12,7 @@ app.set('views',path.join(__dirname, 'views'))
 
 // Middlewares 
 app.use(express.urlencoded({extended:false}))
-
+app.use(methodOverride('_method'))
 
 // Variables globales
 
