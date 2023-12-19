@@ -1,4 +1,6 @@
 const Portfolio = require('../models/Portfolio')
+const { uploadImage } = require('../config/cloudinary')
+
 
 const renderAllPortafolios = async(req,res)=>{
     const portfolios = await Portfolio.find({user:req.user._id}).lean()
@@ -8,10 +10,10 @@ const renderAllPortafolios = async(req,res)=>{
 const renderPortafolio = (req,res)=>{
     res.send('Mostrar el detalle de un portafolio')
 }
+
 const renderPortafolioForm = (req,res)=>{
     res.render('portafolio/newFormPortafolio')
 }
-
 
 const renderEditPortafolioForm =async(req,res)=>{
     const portfolio = await Portfolio.findById(req.params.id).lean()
@@ -32,9 +34,15 @@ const deletePortafolio = async(req,res)=>{
 }
 
 const createNewPortafolio =async (req,res)=>{
-    const {title, category,description} = req.body
+    const {title, category,description} = req.body   
     const newPortfolio = new Portfolio({title,category,description})
     newPortfolio.user = req.user._id
+    if(!(req.files?.image)) return res.send("Se requiere una imagen")
+    const imageUpload = await uploadImage(req.files.image.tempFilePath)
+    newPortfolio.image = {
+        public_id:imageUpload.public_id,
+        secure_url:imageUpload.secure_url
+    }
     await newPortfolio.save()
     res.redirect('/portafolios')
 }
