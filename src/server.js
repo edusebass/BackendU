@@ -4,6 +4,7 @@ const { engine }  = require('express-handlebars')
 const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
+const fileUpload = require('express-fileupload')
 
 // Inicializaciones
 const app = express()
@@ -11,6 +12,10 @@ require('./config/passport')
 // Configuraciones 
 app.set('port',process.env.port || 1000)
 app.set('views',path.join(__dirname, 'views'))
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : './uploads'
+}));
 
 // Middlewares 
 app.use(express.urlencoded({extended:false}))
