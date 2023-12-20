@@ -9,6 +9,12 @@ const fileUpload = require('express-fileupload')
 // Inicializaciones
 const app = express()
 require('./config/passport')
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    // Puedes agregar lógica para manejar el error, como registrar o notificar.
+  });
+  
 // Configuraciones 
 app.set('port',process.env.port || 1000)
 app.set('views',path.join(__dirname, 'views'))
